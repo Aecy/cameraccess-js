@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Camera access with JavaScript</h1>
+    <video id="camera" width="640" height="480" autoplay></video>
+
+    <script>
+        const startStreaming = async () => {
+            try {
+                const camera = document.getElementById('camera');
+
+                camera.srcObject = await navigator.mediaDevices.getUserMedia({
+                    video: true
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        window.onload = startStreaming;
+    </script>
+</body>
+</html>
